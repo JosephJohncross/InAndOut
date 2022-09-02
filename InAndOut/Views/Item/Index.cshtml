@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<InAndOut.Core.Entities.Item>
+
+
+    <div class="w-3/4 mx-auto py-12 px-10 mt-10">   
+        <div class="flex items-center justify-between">
+            <div class="text-3xl text-blue-500">Borrowed Item</div>
+            <div class="flex align-center space-x-6">
+            <a asp-action="Create" asp-controller="Item" class="cursor-pointer px-4 py-2 rounded-lg text-white bg-sky-300">Create Item</a>
+              @*  <a asp-action="Delete" asp-controller="Item" type="submit" class="px-3 py-2 text-white rounded-lg bg-red-500 w-32 text-center" >Delete</a>*@
+            </div>
+        </div>
+
+        @if (Model.Count() > 0)
+        {
+            <table class="mt-12 w-full text-center">
+                <thead class="">
+                    <tr class="">
+                        <th class="border-2 border-slate-700 px-5 py-4">Item Name</th>
+                        <th class="border-2 border-slate-700 px-5 py-4">Borrower</th>
+                        <th class="border-2 border-slate-700 px-5 py-4">Lender</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    @foreach (var item in Model)
+                    {
+                        <tr class="border-1 odd:bg-gray-200">
+                            <td class="border-1 border-slate-400 px-5 py-2">@item.ItemName</td>
+                            <td class="border-1 border-slate-400 px-5 py-2">@item.Borrower</td>
+                            <td class="border-1 border-slate-400 px-5 py-2">@item.Lender</td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+    }
+    else
+    {
+        <div>
+            <p>No Items created</p>
+        </div>
+    }
+</div>

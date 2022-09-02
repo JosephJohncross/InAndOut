@@ -1,0 +1,26 @@
+﻿@model InAndOut.Core.Entities.Expense
+
+<div class="w-3/4 mx-auto py-12 px-10 mt-10 ">
+    <form asp-action="Create" method="post">
+        <div>
+
+        </div>
+        <div class="font-bold mb-4">
+            <label asp-for="ExpenseName"></label>
+        </div>
+        <div>
+            <input asp-for="ExpenseName" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+        </div>
+        <div class="">
+            <label asp-for="Amount" class="font-bold mb-4"></label>
+        </div>  
+        <div>
+            <input asp-for="Amount" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+        </div>
+
+        <div class="flex align-center gap-5 mt-5 ">
+                <input type="submit" class="px-3 py-2 text-white rounded-lg bg-sky-500 w-32 text-center focus:ring-white" value="Create"/>
+                <a asp-action="Index" class="px-4 py-2 text-white rounded-lg bg-amber-500 w-32 text-center"  role="button">Back</a>
+        </div>
+    </form>
+</div>

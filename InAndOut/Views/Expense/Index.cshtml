@@ -1,0 +1,39 @@
+﻿@model IEnumerable<InAndOut.Core.Entities.Expense>
+
+<div class="w-3/4 mx-auto py-12 px-10 mt-10">
+    
+    <div class="flex justify-between align-center">
+        <div class="text-2xl text-blue-500">My Expenses</div>
+        <a asp-action="Create" asp-controller="Expense" class="text-white rounded-lg px-3 py-2 bg-sky-500 hover:bg-sky-300">Create Expenses</a>
+    </div>
+    @if (Model.Count() > 0){
+        <table class="mt-12 w-full text-center">
+            <thead class="">
+                <tr class="">
+                    <th class="border-2 border-slate-700 px-5 py-4">Expense Name</th>
+                    <th class="border-2 border-slate-700 px-5 py-4">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="odd:bg-gray-200">
+                        <td class="border-1 border-slate-400 px-5 py-2">@item.ExpenseName</td>
+                        <td class="border-1 border-slate-400 px-5 py-2">@item.Amount</td>
+                        <td class="flex justify-center align-center bg-white px-5 py-2 space-x-3">
+                            <a asp-action="Update" asp-route-Id="@item.Id" class="rounded-sm bg-sky-500 py-[.4rem] px-[.7rem] text-white">Update</a>
+                            <a asp-action="Delete" asp-route-Id="@item.Id" class="rounded-sm bg-red-500 py-[.4rem] px-[.7rem] text-white">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="mt-5">
+            <p>No expenses created</p>
+        </div>
+    }
+</div>

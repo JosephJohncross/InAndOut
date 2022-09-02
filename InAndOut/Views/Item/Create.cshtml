@@ -1,0 +1,31 @@
+﻿@model InAndOut.Core.Entities.Item
+
+<div class="w-3/4 mx-auto py-12 px-10 mt-10">
+    <form method="post" asp-action="Create">
+        <div>
+            <div class="font-bold">
+                <label asp-for="ItemName" class="font-bold mb-4"></label>
+            </div>
+            <div>
+                <input asp-for="ItemName" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            </div>
+             <div>
+                <label asp-for="Borrower" class="font-bold mb-4"></label>
+            </div>
+            <div>
+                <input asp-for="Borrower" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            </div>
+             <div>
+                <label asp-for="Lender" class="font-bold mb-4"></label>
+            </div>
+            <div>
+                <input asp-for="Lender" type="text"  class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 required:border-red-500 mb-3" />
+            </div>
+        </div>
+
+        <div class="flex align-center gap-5 mt-5">
+                <input type="submit" class="px-3 py-2 text-white rounded-lg bg-sky-500 w-32 text-center" value="Create"/>
+                <a asp-action="Index" class="px-4 py-2 text-white rounded-lg bg-amber-500 w-32 text-center"  role="button">Back</a>
+        </div>
+    </form>
+</div>

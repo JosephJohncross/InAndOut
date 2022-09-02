@@ -2,20 +2,20 @@
 
 <div class="w-3/4 mx-auto py-12 px-10 mt-10 ">
     <form asp-action="Create" method="post">
-        <div>
-
-        </div>
+        @*<div asp-validation-summary="ModelOnly" class="text-red-500"></div>*@
         <div class="font-bold mb-4">
             <label asp-for="ExpenseName"></label>
         </div>
         <div>
             <input asp-for="ExpenseName" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            <span asp-validation-for="ExpenseName" class="text-red-500"></span>
         </div>
         <div class="">
             <label asp-for="Amount" class="font-bold mb-4"></label>
         </div>  
         <div>
             <input asp-for="Amount" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            <span asp-validation-for="Amount" class="text-red-500"></span>
         </div>
 
         <div class="flex align-center gap-5 mt-5 ">
@@ -24,3 +24,9 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

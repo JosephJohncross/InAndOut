@@ -16,6 +16,12 @@ namespace InAndOut.Controllers
         public IActionResult Index()
         {
             IEnumerable<Expense> expenseList = _db.Expenses;
+            
+            foreach(var obj in expenseList)
+            {
+                obj.ExpenseType = _db.ExpenseTypes.FirstOrDefault(u => u.Id == obj.ExpenseTypeId);
+            }
+
             return View(expenseList);
         }
 
@@ -56,7 +62,6 @@ namespace InAndOut.Controllers
             _db.Expenses.Add(expenseObj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-            //return View(obj);
         }
 
         //Update-Get
@@ -67,24 +72,35 @@ namespace InAndOut.Controllers
                 return NotFound();
             }
             var retrievedExpense = _db.Expenses.SingleOrDefault(x => x.Id == id);
+            var expenseObj = new ExpenseVM
+            {
+                Expense = retrievedExpense,
+                TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+
             if (retrievedExpense == null)
             {
                 return NotFound();
             }
-            return View(retrievedExpense);
+            return View(expenseObj);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(int? id, Expense expense)
+        public IActionResult Update(int? id, ExpenseVM expenseVM)
         {
             var retrievedExpense = _db.Expenses.SingleOrDefault(x => x.Id == id);
             if (retrievedExpense == null)
             {
                 return NotFound();
             }
-            retrievedExpense.ExpenseName = expense.ExpenseName;
-            retrievedExpense.Amount = expense.Amount;
+            retrievedExpense.ExpenseName = expenseVM.Expense.ExpenseName;
+            retrievedExpense.Amount = expenseVM.Expense.Amount;
+            retrievedExpense.ExpenseTypeId = expenseVM.Expense.ExpenseTypeId;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

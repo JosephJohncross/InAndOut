@@ -12,6 +12,7 @@
                 <tr class="">
                     <th class="border-2 border-slate-700 px-5 py-4">Expense Name</th>
                     <th class="border-2 border-slate-700 px-5 py-4">Amount</th>
+                    <th class="border-2 border-slate-700 px-5 py-4">Expense Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <tr class="odd:bg-gray-200">
                         <td class="border-1 border-slate-400 px-5 py-2">@item.ExpenseName</td>
                         <td class="border-1 border-slate-400 px-5 py-2">@item.Amount</td>
+                        <td class="border-1 border-slate-400 px-5 py-2">@item.ExpenseType.Name</td>
                         <td class="flex align-center bg-white px-5 py-2 space-x-3">
                             <a asp-action="Update" asp-route-Id="@item.Id" class="rounded-sm bg-sky-500 py-[.4rem] px-[.7rem] text-white">Update</a>
                             <a asp-action="Delete" asp-route-Id="@item.Id" class="rounded-sm bg-red-500 py-[.4rem] px-[.7rem] text-white">Delete</a>

@@ -1,18 +1,27 @@
-﻿@model InAndOut.Core.Entities.Expense
+﻿@model InAndOut.Models.ViewModels.ExpenseVM
 
 <div class="w-3/4 mx-auto py-12 px-10 mt-10 ">
     <form asp-action="Update" method="post">
         <div class="font-bold mb-4">
-            <label asp-for="ExpenseName"></label>
+            <label asp-for="Expense.ExpenseName"></label>
         </div>
         <div>
-            <input asp-for="ExpenseName" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            <input asp-for="Expense.ExpenseName" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
         </div>
         <div class="">
-            <label asp-for="Amount" class="font-bold mb-4"></label>
+            <label asp-for="Expense.Amount" class="font-bold mb-4"></label>
         </div>  
         <div>
-            <input asp-for="Amount" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            <input asp-for="Expense.Amount" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+        </div>
+         <div class="">
+            <label asp-for="Expense.ExpenseType" class="font-bold mb-4"></label>
+        </div>  
+        <div>
+            <select asp-for="Expense.ExpenseTypeId" asp-items="@Model.TypeDropDown" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3">
+                <option selected>--Select Expense Type</option>
+            </select>
+            <span asp-validation-for="Expense.ExpenseTypeId" class="text-red-500"></span>
         </div>
 
         <div class="flex align-center gap-5 mt-5 ">

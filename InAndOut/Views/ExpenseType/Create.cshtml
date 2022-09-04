@@ -1,0 +1,25 @@
+﻿@model InAndOut.Core.Entities.ExpenseType
+
+<div class="w-3/4 mx-auto py-12 px-10 mt-10 ">
+    <form asp-action="Create" method="post">
+        @*<div asp-validation-summary="ModelOnly" class="text-red-500"></div>*@
+        <div class="font-bold mb-4">
+            <label asp-for="Name"></label>
+        </div>
+        <div>
+            <input asp-for="Name" type="text" class="border-1 border-slate-500 rounded-sm focus:ring-1 ring-blue-500 outline-0 p-2 mb-3"/>
+            <span asp-validation-for="Name" class="text-red-500"></span>
+        </div>
+         
+        <div class="flex align-center gap-5 mt-5 ">
+                <input type="submit" class="px-3 py-2 text-white rounded-lg bg-sky-500 w-32 text-center focus:ring-white" value="Create"/>
+                <a asp-action="Index" class="px-4 py-2 text-white rounded-lg bg-amber-500 w-32 text-center"  role="button">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

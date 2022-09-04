@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InAndOut.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InAndOut.Controllers
 {
@@ -20,21 +22,41 @@ namespace InAndOut.Controllers
         //Create-GET
         public IActionResult Create()
         {
-            return View();  
+            //IEnumerable<SelectListItem> TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
+            //{
+            //    Text = i.Name,
+            //    Value = i.Id.ToString()
+            //});
+
+            //ViewBag.TypeDropDown = TypeDropDown;
+            ExpenseVM expenseVM = new ExpenseVM
+            {
+                Expense = new Expense(),
+                TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+            return View(expenseVM);  
         }
 
         //Create-POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Expense expense)
+        public IActionResult Create(ExpenseVM obj)
         {
-            if (ModelState.IsValid)
+            var expenseObj = new Expense
             {
-                _db.Expenses.Add(expense);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(expense);
+                ExpenseTypeId = (int)obj.Expense.ExpenseTypeId,
+                ExpenseName = obj.Expense.ExpenseName,
+                Amount = obj.Expense.Amount
+            };
+
+            _db.Expenses.Add(expenseObj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+            //return View(obj);
         }
 
         //Update-Get

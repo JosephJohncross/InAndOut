@@ -27,4 +27,4 @@ namespace InAndOut.Core.Entities
         [ForeignKey("ExpenseTypeId")]
         public virtual ExpenseType ExpenseType { get; set; }
     }
-}
+}   
